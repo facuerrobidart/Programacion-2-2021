@@ -53,6 +53,26 @@ void nodosDoblementeImpares(TArbol A, TPosicion p,int nAct,int *cont){
     if (!nulo(p)){
         if (nAct%2==1 && info(p,A))
             (*cont)++;
-        
     }
+}
+
+//e) verificar si cumple que para todas las claves salvo las de las hojas, su valor numérico es igual
+//a la cantidad de hijos.(int y void)
+
+int claveIgualGrado(TArbol A,TPosicion p){
+    int gradoLocal=0; TPosicion c; int acum=0;
+
+    if (!nulo(p)){
+        c=hijoMasIzq(p,A);
+        while (!nulo(c)){
+            gradoLocal++; //cuento los hijos de p
+            acum+=claveIgualGrado(A,c); // en acum guardo los return de los hijos de p
+            c=hnoDer(c,A);
+        }
+        if (info(p,A)==gradoLocal && gradoLocal!=0) //si cumplo la condicion retorno 1 mas los hijos que cumplan la condicion
+            return 1+acum;
+        else //sino returno los hijos que cumplen la condicion
+            return acum;
+    }else //si me "caigo" del arbol devuelvo cero
+        return 0;
 }
