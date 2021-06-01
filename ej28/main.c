@@ -76,3 +76,20 @@ int claveIgualGrado(TArbol A,TPosicion p){
     }else //si me "caigo" del arbol devuelvo cero
         return 0;
 }
+
+int claveIgualGrado(TArbol A,TPosicion p){
+    int gradoLocal=0;TPosicion c;
+    
+    if (!nulo(p)){
+        c=hijoMasIzq(p,A);
+        while (!nulo(c) && claveIgualGrado(c,A)){
+            gradoLocal++;
+            c=hnoDer(c,A);
+        }
+        if (!nulo(c))
+            return 0;
+        else
+            return (info(p,A)==gradoLocal || gradoLocal==0);
+    }else
+        return 1;
+}
