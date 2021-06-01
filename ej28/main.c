@@ -27,7 +27,7 @@ int pares(TArbol A,TPosicion p){
         return 0;   
 }
 float porcPares(TArbol A){
-    return (float)nodos(A,raiz(A))/pares(A,raiz(A))+100;
+    return (float)nodos(A,raiz(A))/pares(A,raiz(A))*100;
 }
 
 //c) retornar su grado
